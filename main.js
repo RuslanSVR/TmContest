@@ -157,7 +157,7 @@ xmlhttp.onreadystatechange = function() {
         console.log('Text: ' + xmlhttp.responseText);
     }
 };
-xmlhttp.open("GET", url, false);
+xmlhttp.open("GET", url, true);
 xmlhttp.send();
 /*
 // 1. Создаём новый объект XMLHttpRequest
