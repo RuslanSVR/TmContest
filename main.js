@@ -160,6 +160,7 @@ xmlhttp.onreadystatechange = function() {
     }
 };
 xmlhttp.open("GET", url, true);
+xmlhttp.overrideMimeType("application/json");
 xmlhttp.send();
 /*
 // 1. Создаём новый объект XMLHttpRequest
