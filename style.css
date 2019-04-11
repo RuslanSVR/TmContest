@@ -1,0 +1,27 @@
+.svgCharts{
+  width: 100%;
+}
+
+.chartBoards{
+  width: 100%;
+}
+
+.dateBars{
+  width: 100%;
+}
+
+.scrollBars{
+  width: 100%;
+}
+
+.buttonBars{
+  width: 100%;
+}
+
+.chartTitles {
+  font-family: arial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  color: #696969;
+}
