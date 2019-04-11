@@ -154,7 +154,7 @@ var url = "input_s/1/overview.json";
 
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        console.log('JSON: ' + JSON.parse(xmlhttp.responseText));
+        console.log(JSON.parse(xmlhttp.responseText));
     }
 };
 xmlhttp.open("GET", url, true);
