@@ -157,6 +157,7 @@ xmlhttp.onreadystatechange = function() {
         //var parsed = JSON.parse(xmlhttp.responseText);d
         var parsed = JSON.parse(xmlhttp.response);
         console.log(parsed);
+        console.log('JSON_obj: ');
 
     }
 };
