@@ -157,12 +157,12 @@ xmlhttp.onreadystatechange = function() {
         //var parsed = JSON.parse(xmlhttp.responseText);d
         var parsed = JSON.parse(xmlhttp.response);
         console.log(parsed);
-    
+
     }
 };
 xmlhttp.open("GET", url, true);
 xmlhttp.overrideMimeType("application/json");
-xmlhttp.responseType = 'json';
+//xmlhttp.responseType = 'json';
 xmlhttp.send();
 /*
 // 1. Создаём новый объект XMLHttpRequest
