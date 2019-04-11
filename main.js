@@ -150,7 +150,7 @@ req.onload  = function() {
 req.send(null);
 */
 var xmlhttp = new XMLHttpRequest();
-var url = "/view/Desktop/JS/prod/contest/1/overview.json";
+var url = "/input/1/overview.json";
 
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
