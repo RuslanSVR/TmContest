@@ -161,12 +161,9 @@ function getChart(url){
   });
 }
 
-var chart_obj = {};
-chart_obj = getChart('input_s/1/overview.json');
-//getChart('input_s/1/overview.json').then(
+
+getChart('input_s/1/overview.json').then(
 chart_obj.then(
     function(chart_obj) {console.log(chart_obj);},
     function(error){console.log(error);}
 );
-
-console.log('my_obj',chart_obj);
