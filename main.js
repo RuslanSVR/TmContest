@@ -173,7 +173,7 @@ function getChart(url) {
     chart.open('GET', url, true);
     chart.overrideMimeType("application/json");
     chart.responseType = 'json';
-    chart.onload = function() {
+    chart.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         resolve(this.response);
       } else {
@@ -190,7 +190,7 @@ function getChart(url) {
 }
 
 console.log('JSON_obj: ');
-getChart('/input_s/1/overview.json')
+getChart('input_s/1/overview.json')
   .then(
     response => alert(`Fulfilled: ${response}`),
     error => alert(`Rejected: ${error}`)
