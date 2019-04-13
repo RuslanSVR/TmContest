@@ -53,5 +53,5 @@ for (var i = 1; i <= ch_max; i++) {
     chart_obj => console.log(chart_obj),
     error => console.log(error)
   );
-  document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div>"); //create title element for each chart
+  document.write("<div class='chartsHeader'><div class='chartsName'><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div><div class='chart-interval'>Test</div></div>"); //create title element for each chart
 }

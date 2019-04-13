@@ -26,3 +26,20 @@
   color: #696969;
   text-align: right;
 }
+
+
+.chartsHeader {
+  position: static;
+  width: 100%;
+}
+.chartsName {
+  position: absolute;
+  width: 50%;
+  text-align: left;
+}
+
+.chart-interval {
+  position: absolute;
+  width: 50%;
+  text-align: right;
+}
