@@ -151,8 +151,6 @@ req.send(null);
 */
 function getChart(url) { //returns chart from json file
   var chart = new XMLHttpRequest();
-  //var url = "input_s/1/overview.json";
-
   chart.onreadystatechange = function() {
       if (chart.readyState == 4 && chart.status == 200) {
           console.log('JSON_obj: ');
