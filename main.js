@@ -141,21 +141,13 @@ function getChart(url){
   return new Promise(function(resolve, reject){
     var chart = new XMLHttpRequest();
     chart.open('GET', url, true);
-    chart.onreadystatechange = function (evt) {
+    chart.onreadystatechange = function () {
       if (chart.readyState == 4) {
           if(chart.status == 200) {
-            try{
-              //var json = JSON.parse(chart.responseText);
-              //resolve(json);
-              resolve(JSON.parse(chart.responseText));
-            }
-            catch(err){
-              reject(err);
-            }
+            try{resolve(JSON.parse(chart.responseText));}
+            catch(err){reject(err);}
           }
-          else {
-              reject(chart.status);
-          }
+          else {reject(chart.status);}
       }
     };
     chart.send(null);
