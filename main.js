@@ -162,7 +162,7 @@ function getChart(url) { //returns chart from json file
   chart.overrideMimeType("application/json");
   chart.responseType = 'json';
   chart.send();
-  delete chart;
+  //delete chart;
 }
 
 console.log('JSON_obj: ');
