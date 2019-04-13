@@ -192,12 +192,8 @@ function getChart(url){
 }
 
 getChart('input_s/1/overview.json').then(
-    function(data){
-        console.log(data);
-    },
-    function(error){
-        console.log(error);
-    }
+    function(data) {console.log(data);},
+    function(error){console.log(error);}
 );
 
 //var chart_obj = {};
