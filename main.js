@@ -156,7 +156,6 @@ function getChart(url) { //returns chart from json file
       if (chart.readyState == 4 && chart.status == 200) {
           ret_obj = chart.response;
           console.log(ret_obj);
-          return ret_obj;
       }
   };
   chart.open("GET", url, true);
@@ -164,6 +163,7 @@ function getChart(url) { //returns chart from json file
   chart.responseType = 'json';
   chart.send();
   //delete chart;
+  return ret_obj;
 }
 
 console.log('JSON_obj: ');
