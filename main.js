@@ -149,20 +149,27 @@ req.onload  = function() {
 };
 req.send(null);
 */
-var xmlhttp = new XMLHttpRequest();
-var url = "input_s/1/overview.json";
+function getChart(url) { //read chart from json file
+  var chart = new XMLHttpRequest();
+  //var url = "input_s/1/overview.json";
 
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        console.log('JSON_obj: ');
-        console.log(xmlhttp.response);
+  chart.onreadystatechange = function() {
+      if (chart.readyState == 4 && xmlhttp.status == 200) {
+          console.log('JSON_obj: ');
+          console.log(chart.response);
 
-    }
-};
-xmlhttp.open("GET", url, true);
-xmlhttp.overrideMimeType("application/json");
-xmlhttp.responseType = 'json';
-xmlhttp.send();
+      }
+  };
+  chart.open("GET", url, true);
+  chart.overrideMimeType("application/json");
+  chart.responseType = 'json';
+  chart.send();
+  delete chart;
+}
+
+getChart('input_s/1/overview.json');
+
+
 /*
 // 1. Создаём новый объект XMLHttpRequest
 var xhr = new XMLHttpRequest();
