@@ -145,8 +145,9 @@ function getChart(url){
       if (chart.readyState == 4) {
           if(chart.status == 200) {
             try{
-              var json = JSON.parse(chart.responseText);
-              resolve(json);
+              //var json = JSON.parse(chart.responseText);
+              //resolve(json);
+              resolve(JSON.parse(chart.responseText));
             }
             catch(err){
               reject(err);
