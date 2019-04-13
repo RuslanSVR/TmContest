@@ -1,4 +1,5 @@
 var uTime = 1528016400000;
+    ch_max = 5;
 function f_getDate(UNIX_timestamp, tView){ //tView[t - time, d - date]
   var uStamp = new Date(UNIX_timestamp);
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -31,14 +32,14 @@ function getChart(url){
   });
 }
 
-for (var i = 1; i <= 5; i++) {
+for (var i = 1; i <= ch_max; i++) {
   getChart('input_s/' + i + '/overview.json').then(
       function(chart_obj) {console.log(chart_obj);},
       function(error){console.log(error);}
   );
 }
 
-for (var i = 0; i < charts.length; i++) {
+for (var i = 0; i < ch_max; i++) {
   document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + (i+1) + "</font></div>"); //create title element for each chart
-  
+
 }
