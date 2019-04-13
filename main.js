@@ -163,7 +163,7 @@ function getChart(url) { //returns chart from json file
   chart.responseType = 'json';
   chart.send();
   //delete chart;
-  return ret_obj;
+  return chart.response;
 }
 
 console.log('JSON_obj: ');
