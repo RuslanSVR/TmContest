@@ -191,7 +191,7 @@ function getChart(url){
   });
 }
 
-var chart_obj {};
+var chart_obj = {};
 chart_obj = getChart('story.json').then(function(response) {
   return JSON.parse(response);
 }).then(function(response) {
