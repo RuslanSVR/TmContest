@@ -167,34 +167,38 @@ function getChart(url) { //returns chart from json file
 }
 */
 
-function getChart(url) {
-  return new Promise(function(resolve, reject) {
-    var chart = new XMLHttpRequest();
-    chart.open('GET', url, true);
-    chart.overrideMimeType("application/json");
-    chart.responseType = 'json';
-    chart.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        resolve(this.response);
-      } else {
-        var error = new Error(this.statusText);
-        error.code = this.status;
-        reject(error);
+function getChart(url){
+  return new Promise(function(resolve, reject){
+    var req = new XMLHttpRequest();
+    req.open('GET', url, true);
+    req.onreadystatechange = function (evt) {
+      if (req.readyState == 4) {
+          if(req.status == 200) {
+            try{
+              var json = JSON.parse(req.responseText);
+              resolve(json);
+            }
+            catch(ex){
+              reject(ex);
+            }
+          }
+          else {
+              reject(req.status);
+          }
       }
     };
-    chart.onerror = function() {
-      reject(new Error("Error"));
-    };
-    chart.send();
+    req.send(null);
   });
 }
 
-console.log('JSON_obj: ');
-getChart('input_s/1/overview.json')
-  .then(
-    response => alert(`Fulfilled: ${response}`),
-    error => alert(`Rejected: ${error}`)
-  );
+getChart('input_s/1/overview.json').then(
+    function(data){
+        console.log(data);
+    },
+    function(error){
+        console.log(error);
+    }
+);
 
 //var chart_obj = {};
 //chart_obj = getChart('input_s/1/overview.json');
