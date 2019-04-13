@@ -151,9 +151,11 @@ req.send(null);
 */
 function getChart(url) { //returns chart from json file
   var chart = new XMLHttpRequest();
+  ret_obj = {};
   chart.onreadystatechange = function() {
       if (chart.readyState == 4 && chart.status == 200) {
-          return chart.response;
+          ret_obj = chart.response;
+          return = ret_obj;
       } else {
         return null;
       }
