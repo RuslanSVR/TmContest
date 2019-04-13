@@ -31,7 +31,7 @@ function getChart(url){
     chart.onreadystatechange = function () {
       if (chart.readyState == 4) {
           if(chart.status == 200) {
-            try{resolve(JSON.parse(chart.responseText));}
+            try{return resolve(JSON.parse(chart.responseText));}
             catch(err){reject(err);}
           }
           else {reject(chart.status);}
