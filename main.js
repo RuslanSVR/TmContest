@@ -152,7 +152,7 @@ req.send(null);
 function getChart(url) { //returns chart from json file
   var chart = new XMLHttpRequest();
   ret_obj = {};
-  chart.onreadystatechange = function() {
+  chart.onload = function() {
       if (chart.readyState == 4 && chart.status == 200) {
           ret_obj = chart.response;
           console.log(ret_obj);
