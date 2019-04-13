@@ -192,11 +192,18 @@ function getChart(url){
 }
 
 var chart_obj = {};
+
+/*
 chart_obj = getChart('story.json').then(function(response) {
   return JSON.parse(response);
 }).then(function(response) {
   console.log("Yey JSON!", response);
 });
+*/
+getChart('input_s/1/overview.json').then(
+    function(chart_obj) {console.log(chart_obj);},
+    function(error){console.log(error);}
+);
 
 console.log('my_obj',chart_obj);
 
