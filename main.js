@@ -45,7 +45,7 @@ for (var i = 1; i <= ch_max; i++) {
   getChart('input_s/' + i + '/overview.json').then(
       function(chart_obj) {
         console.log(chart_obj);
-        document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + (i+1) + "</font></div>"); //create title element for each chart
+        document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div>"); //create title element for each chart
       },
       function(error){console.log(error);}
   );
