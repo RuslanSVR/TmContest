@@ -41,7 +41,7 @@ function getChart(url){
   });
 }
 
-
+//test
 function onSuccess(chart_obj) {
   console.log(chart_obj);
 }
