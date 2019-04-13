@@ -153,10 +153,7 @@ function getChart(url) { //returns chart from json file
   var chart = new XMLHttpRequest();
   chart.onreadystatechange = function() {
       if (chart.readyState == 4 && chart.status == 200) {
-          console.log('JSON_obj: ');
-          console.log(chart.response);
           return chart.response;
-
       } else {
         return null;
       }
@@ -168,7 +165,8 @@ function getChart(url) { //returns chart from json file
   delete chart;
 }
 
-getChart('input_s/1/overview.json');
+console.log('JSON_obj: ');
+console.log(getChart('input_s/1/overview.json'));
 
 
 /*
