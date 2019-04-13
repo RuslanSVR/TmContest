@@ -31,7 +31,9 @@ function getChart(url, ch_num){
     chart.onreadystatechange = () => {
       if (chart.readyState == 4) {
           if(chart.status == 200) {
-            try{resolve(JSON.parse(chart.responseText));}
+            try{
+                resolve([ch_num, JSON.parse(chart.responseText)])
+            }
             catch(err){reject(err);}
           }
           else reject(chart.status);
@@ -47,14 +49,15 @@ function onSuccess(my_obj) {
 
 }
 
-var test = [];
+var charts = [];
 for (var i = 1; i <= ch_max; i++) {
     getChart('input_s/' + i + '/overview.json', i)
       .then(resolve => {
         onSuccess(resolve);
+        charts[resolve[0]] = resolve[1];
       })
       .catch(error => console.log(error))
   ;
   document.write("<div class='chartsHeader'><div class='chartsName'><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div><div class='chart-interval'>Test</div></div>"); //create title element for each chart
 }
-console.info(test);
+console.info(charts);
