@@ -148,7 +148,7 @@ req.onload  = function() {
    //console.log('JSON: ' + jsonResponse);
 };
 req.send(null);
-*/
+*//*
 function getChart(url) { //returns chart from json file
   var chart = new XMLHttpRequest();
   ret_obj = {};
@@ -165,11 +165,40 @@ function getChart(url) { //returns chart from json file
   //delete chart;
   return chart.response;
 }
+*/
+
+function getChart(url) {
+  return new Promise(function(resolve, reject) {
+    var chart = new XMLHttpRequest();
+    chart.open('GET', url, true);
+    chart.overrideMimeType("application/json");
+    chart.responseType = 'json';
+    chart.onload = function() {
+      if (this.readyState == 4 this.status == 200) {
+        resolve(this.response);
+      } else {
+        var error = new Error(this.statusText);
+        error.code = this.status;
+        reject(error);
+      }
+    };
+    chart.onerror = function() {
+      reject(new Error("Error"));
+    };
+    chart.send();
+  });
+}
 
 console.log('JSON_obj: ');
-var chart_obj = {};
-chart_obj = getChart('input_s/1/overview.json');
-console.log(chart_obj);
+getChart('input_s/1/overview.json')
+  .then(
+    response => alert(`Fulfilled: ${response}`),
+    error => alert(`Rejected: ${error}`)
+  );
+
+//var chart_obj = {};
+//chart_obj = getChart('input_s/1/overview.json');
+//console.log(chart_obj);
 
 
 /*
