@@ -42,10 +42,10 @@ function getChart(url){
 
 
 for (var i = 1; i <= ch_max; i++) {
+  document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div>"); //create title element for each chart
   getChart('input_s/' + i + '/overview.json').then(
       function(chart_obj) {
         console.log(chart_obj);
-        document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div>"); //create title element for each chart
       },
       function(error){console.log(error);}
   );
