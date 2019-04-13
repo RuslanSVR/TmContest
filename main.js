@@ -154,8 +154,14 @@ function getChart(url){
   });
 }
 
-
+for (var i = 1; i <= 5; i++) {
+  getChart('input_s/' + i + '/overview.json').then(
+      function(chart_obj) {console.log(chart_obj);},
+      function(error){console.log(error);}
+  );
+}
+/*
 getChart('input_s/1/overview.json').then(
     function(chart_obj) {console.log(chart_obj);},
     function(error){console.log(error);}
-);
+);*/
