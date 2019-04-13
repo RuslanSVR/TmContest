@@ -93,7 +93,7 @@ console.log(wSize);
 console.log("Portrait: " + portraitOrientation);
 
 for (var i = 0; i < charts.length; i++) {
-  document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + (i+1) + "</font></div>"); //create svg element for each chart
+  document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + (i+1) + "</font></div>"); //create title element for each chart
   //document.write("<div><svg x='0' width='100%' height='601px'  preserveAspectRatio='none' class='svgCharts' id='svgChart"+ i + "' xmlns=\"http://www.w3.org/2000/svg\">"); //create svg element for each chart
     //create path for i chart and set state true for charts. This attributes adds to chart object
     charts[i].states = ['false'];
