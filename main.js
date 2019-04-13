@@ -34,7 +34,7 @@ function getChart(url){
             try{return resolve(JSON.parse(chart.responseText));}
             catch(err){reject(err);}
           }
-          else {reject(chart.status);}
+          else return eject(chart.status);
       }
     };
     chart.send(null);
