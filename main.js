@@ -24,17 +24,17 @@ console.log('Time_d2: ' + f_getDate(uTime,'d2'));
 console.log('Time_day: ' + f_getDate(uTime,'day'));
 
 
-function getChart(url){
+function getChart(url, ch_num){
   return new Promise(function(resolve, reject){
     var chart = new XMLHttpRequest();
     chart.open('GET', url, true);
-    chart.onreadystatechange = function () {
+    chart.onreadystatechange = () => {
       if (chart.readyState == 4) {
           if(chart.status == 200) {
-            try{return resolve(JSON.parse(chart.responseText));}
+            try{resolve(JSON.parse(chart.responseText));}
             catch(err){reject(err);}
           }
-          else return eject(chart.status);
+          else reject(chart.status);
       }
     };
     chart.send(null);
@@ -42,16 +42,19 @@ function getChart(url){
 }
 
 //test
-function onSuccess(chart_obj) {
-  console.log(chart_obj);
+function onSuccess(my_obj) {
+  console.warn('Chart: ', my_obj);
+
 }
 
-var test = {};
+var test = [];
 for (var i = 1; i <= ch_max; i++) {
-    getChart('input_s/' + i + '/overview.json')
-      .then(
-    chart_obj => console.log(chart_obj),
-    error => console.log(error)
-  );
+    getChart('input_s/' + i + '/overview.json', i)
+      .then(resolve => {
+        onSuccess(resolve);
+      })
+      .catch(error => console.log(error))
+  ;
   document.write("<div class='chartsHeader'><div class='chartsName'><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div><div class='chart-interval'>Test</div></div>"); //create title element for each chart
 }
+console.info(test);
