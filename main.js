@@ -155,7 +155,7 @@ function getChart(url) { //returns chart from json file
   chart.onreadystatechange = function() {
       if (chart.readyState == 4 && chart.status == 200) {
           ret_obj = chart.response;
-          return = ret_obj;
+          return ret_obj;
       } else {
         return null;
       }
