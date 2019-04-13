@@ -1,5 +1,6 @@
 var uTime = 1528016400000;
     ch_max = 5;
+    charts = [];
 function f_getDate(UNIX_timestamp, tView){ //tView[t - time, d1 - 1 Apr, d2 - 1 April 2019, day - Saturday]
   var uStamp = new Date(UNIX_timestamp);
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -42,10 +43,11 @@ function getChart(url){
 
 
 for (var i = 1; i <= ch_max; i++) {
-  document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div>"); //create title element for each chart
+
   getChart('input_s/' + i + '/overview.json').then(
-      function(chart_obj) {
+      function(chart_obj, i) {
         console.log(chart_obj);
+        document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div>"); //create title element for each chart
       },
       function(error){console.log(error);}
   );
