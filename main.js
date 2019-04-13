@@ -191,10 +191,14 @@ function getChart(url){
   });
 }
 
-getChart('input_s/1/overview.json').then(
-    function(data) {console.log(data);},
-    function(error){console.log(error);}
-);
+var chart_obj {};
+chart_obj = getChart('story.json').then(function(response) {
+  return JSON.parse(response);
+}).then(function(response) {
+  console.log("Yey JSON!", response);
+});
+
+console.log('my_obj',chart_obj);
 
 //var chart_obj = {};
 //chart_obj = getChart('input_s/1/overview.json');
