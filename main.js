@@ -190,7 +190,7 @@ function getChart(url) {
 }
 
 console.log('JSON_obj: ');
-getChart('input_s/1/overview.json')
+getChart('/input_s/1/overview.json')
   .then(
     response => alert(`Fulfilled: ${response}`),
     error => alert(`Rejected: ${error}`)
