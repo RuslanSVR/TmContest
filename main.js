@@ -154,7 +154,7 @@ function getChart(url) { //read chart from json file
   //var url = "input_s/1/overview.json";
 
   chart.onreadystatechange = function() {
-      if (chart.readyState == 4 && xmlhttp.status == 200) {
+      if (chart.readyState == 4 && chart.status == 200) {
           console.log('JSON_obj: ');
           console.log(chart.response);
 
