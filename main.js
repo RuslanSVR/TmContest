@@ -160,7 +160,7 @@ function getChart(url) { //returns chart from json file
         return null;
       }
   };
-  chart.open("GET", url, true);
+  chart.open("GET", url, false);
   chart.overrideMimeType("application/json");
   chart.responseType = 'json';
   chart.send();
