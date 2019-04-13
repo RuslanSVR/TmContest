@@ -135,37 +135,7 @@ function f_getDate(UNIX_timestamp, tView){ //tView[t - time, d - date]
 }
 
 console.log('Time: ' + f_getDate(uTime,'t'));
-/*
 
-var req = new XMLHttpRequest();
-req.overrideMimeType("application/json");
-req.open('GET', 'contest/1/overview.json', true);
-req.onload  = function() {
-  console.log('JSON_Text: ' + req.responseText);
-
-   var jsonResponse = {};
-   //jsonResponse = JSON.parse(req.responseText);
-   //console.log('JSON: ' + jsonResponse);
-};
-req.send(null);
-*//*
-function getChart(url) { //returns chart from json file
-  var chart = new XMLHttpRequest();
-  ret_obj = {};
-  chart.onload = function() {
-      if (chart.readyState == 4 && chart.status == 200) {
-          ret_obj = chart.response;
-          console.log(ret_obj);
-      }
-  };
-  chart.open("GET", url, true);
-  chart.overrideMimeType("application/json");
-  chart.responseType = 'json';
-  chart.send();
-  //delete chart;
-  return chart.response;
-}
-*/
 
 function getChart(url){
   return new Promise(function(resolve, reject){
@@ -200,30 +170,3 @@ chart_obj.then(
 );
 
 console.log('my_obj',chart_obj);
-
-//var chart_obj = {};
-//chart_obj = getChart('input_s/1/overview.json');
-//console.log(chart_obj);
-
-
-/*
-// 1. Создаём новый объект XMLHttpRequest
-var xhr = new XMLHttpRequest();
-// 2. Конфигурируем его: GET-запрос на URL 'phones.json'
-//xhr.open('GET', 'contest/1/overview.json', true);
-xhr.open('GET', 'contest/1/overview.json', true);
-xhr.responseType = '';
-// 3. Отсылаем запрос
-xhr.send();
-// 4. Если код ответа сервера не 200, то это ошибка
-if (xhr.readyState == 4 && xhr.status == 200) {
-  // обработать ошибку
-  //alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
-  console.log('Error: ' + xhr.status + ': ' + xhr.statusText);
-} else {
-  // вывести результат
-  console.log('json:');
-  console.log(JSON.parse(xhr.responseText)); // responseText -- текст ответа.
-  //console.log(JSON.parse(xhr.response)); // responseText -- текст ответа.
-}
-*/
