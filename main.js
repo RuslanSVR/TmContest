@@ -164,7 +164,6 @@ function getChart(url){
 
 
 getChart('input_s/1/overview.json').then(
-chart_obj.then(
     function(chart_obj) {console.log(chart_obj);},
     function(error){console.log(error);}
 );
