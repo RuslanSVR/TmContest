@@ -48,10 +48,8 @@ function onSuccess(chart_obj) {
 
 for (var i = 1; i <= ch_max; i++) {
   getChart('input_s/' + i + '/overview.json').then(
-    function onSuccess(chart_obj) {
-      console.log(chart_obj);
-    },
-      function(error){console.log(error);}
+    function(chart_obj) {console.log(chart_obj);},
+    function(error){console.log(error);}
   document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div>"); //create title element for each chart
   );
 
