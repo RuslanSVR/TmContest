@@ -6,7 +6,7 @@ function f_getDate(UNIX_timestamp, tView){ //tView[t - time, d1 - 1 Apr, d2 - 1 
   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var time = 'error: Invalid view type';
   if (tView == 'd1') {
-      time = uStamp.getDate() + ' ' + (months[uStamp.getMonth()]).substr(3);
+      time = uStamp.getDate() + ' ' + (months[uStamp.getMonth()]).substr(0,3);
   } else if (tView == 'd2') {
       time = uStamp.getDate() + ' ' + months[uStamp.getMonth()] + ' ' + uStamp.getFullYear();
   } else if (tView == 't') {
