@@ -29,17 +29,23 @@
 
 
 .chartsHeader {
-  position: static;
-  width: 100%;
+  position: relative;
+  width: auto;
+  height: 20px;
+  margin: auto;
 }
 .chartsName {
-  position: absolute;
+  position: relative;
   width: 50%;
+  margin: 0;
   text-align: left;
+  float: left;
 }
 
 .chart-interval {
-  position: absolute;
+  position: relative;
+  margin: 0;
   width: 50%;
   text-align: right;
+  float: right;
 }
