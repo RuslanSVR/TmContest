@@ -166,7 +166,8 @@ function getChart(url) { //returns chart from json file
 }
 
 console.log('JSON_obj: ');
-var chart_obj = getChart('input_s/1/overview.json');
+var chart_obj = {};
+chart_obj = getChart('input_s/1/overview.json');
 console.log(chart_obj);
 
 
