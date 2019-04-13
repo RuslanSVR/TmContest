@@ -169,25 +169,25 @@ function getChart(url) { //returns chart from json file
 
 function getChart(url){
   return new Promise(function(resolve, reject){
-    var req = new XMLHttpRequest();
-    req.open('GET', url, true);
-    req.onreadystatechange = function (evt) {
-      if (req.readyState == 4) {
-          if(req.status == 200) {
+    var chart = new XMLHttpRequest();
+    chart.open('GET', url, true);
+    chart.onreadystatechange = function (evt) {
+      if (chart.readyState == 4) {
+          if(chart.status == 200) {
             try{
-              var json = JSON.parse(req.responseText);
+              var json = JSON.parse(chart.responseText);
               resolve(json);
             }
-            catch(ex){
-              reject(ex);
+            catch(err){
+              reject(err);
             }
           }
           else {
-              reject(req.status);
+              reject(chart.status);
           }
       }
     };
-    req.send(null);
+    chart.send(null);
   });
 }
 
