@@ -149,7 +149,7 @@ req.onload  = function() {
 };
 req.send(null);
 */
-function getChart(url) { //read chart from json file
+function getChart(url) { //returns chart from json file
   var chart = new XMLHttpRequest();
   //var url = "input_s/1/overview.json";
 
@@ -157,7 +157,10 @@ function getChart(url) { //read chart from json file
       if (chart.readyState == 4 && chart.status == 200) {
           console.log('JSON_obj: ');
           console.log(chart.response);
+          return chart.response;
 
+      } else {
+        return null;
       }
   };
   chart.open("GET", url, true);
