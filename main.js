@@ -37,3 +37,8 @@ for (var i = 1; i <= 5; i++) {
       function(error){console.log(error);}
   );
 }
+
+for (var i = 0; i < charts.length; i++) {
+  document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + (i+1) + "</font></div>"); //create title element for each chart
+  
+}
