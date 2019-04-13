@@ -42,14 +42,15 @@ function getChart(url){
 }
 
 
-for (var i = 1; i <= ch_max; i++) {
+function onSuccsess(chart_obj) {
+  console.log(chart_obj);
+}
 
+for (var i = 1; i <= ch_max; i++) {
   getChart('input_s/' + i + '/overview.json').then(
-      function(chart_obj, i) {
-        console.log(chart_obj);
-        document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div>"); //create title element for each chart
-      },
+      onSuccsess,
       function(error){console.log(error);}
+  document.write("<div><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div>"); //create title element for each chart
   );
 
 
