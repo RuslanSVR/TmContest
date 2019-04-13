@@ -174,7 +174,7 @@ function getChart(url) {
     chart.overrideMimeType("application/json");
     chart.responseType = 'json';
     chart.onload = function() {
-      if (this.readyState == 4 this.status == 200) {
+      if (this.readyState == 4 && this.status == 200) {
         resolve(this.response);
       } else {
         var error = new Error(this.statusText);
