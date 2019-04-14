@@ -94,11 +94,10 @@ function onSuccess(charts) {
       */
 
       var points_el = document.createElement('polyline');
-      points_el.setAttribute('stroke', "red");
       points_el.setAttribute('points', '10,20 100,300');
-      points_el.setAttribute('stroke-width', '1');
-      points_el.setAttribute('fill', 'transparent');
-      points_el.setAttribute('fill', 'transparent');
+      points_el.setAttribute('stroke', "red");
+      points_el.setAttribute('stroke-width', '3');
+      points_el.setAttribute('fill', 'none');
       document.getElementById('chartBoard' + charts[0]).appendChild(points_el);
 
       console.info('Chart# ',charts[0], ' y_scaled',charts);
