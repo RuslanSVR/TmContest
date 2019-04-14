@@ -1,6 +1,7 @@
 var uTime = 1554508800000;
     ch_max = 5;
     charts = [];
+var def_int = 6; //default date diff
 function f_getDate(UNIX_timestamp, tView){ //tView[t - time, d1 - 1 Apr, d2 - 1 April 2019, day - Saturday]
   var uStamp = new Date(UNIX_timestamp);
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -41,21 +42,58 @@ function getChart(url, ch_num){
   });
 }
 
-//test
-var def_int = 6; //default date diff
+function getMaxArr(array){
+  return Math.max.apply(Math, array);
+};
+function getMinArr(array){
+  return Math.min.apply(Math, array);
+};
+
+  //let minX = getMinArr(arrX.slice(1));
+
+function getLine(chart) { //returns polyline for line type chart --input: columns, scaled [true,false]
+  let line = [];
+  let maxY = 0;
+  for (var i = 1; i < chart.length; i++) {
+    maxY = getMaxArr(chart[i].slice(1));
+    line[i-1] = '';
+    for (var j = 1; j < chart[i].length; j++) {
+      line[i-1] += (j-1) + ',' + (maxY - chart[i][j]) + ' ';
+    }
+  }
+  return line;
+}
+
+
+
 //on onSuccess for each chart
 function onSuccess(charts) {
   let date_int = def_int;
-  console.warn('Chart: ', charts);
   document.getElementById('chartBoard' + charts[0]).setAttribute('viewBox', '0 7 7 ' + charts[0]);
   document.getElementById('date-interval-' + charts[0]).innerHTML = f_getDate(charts[1].columns[0][charts[1].columns[0].length-1-date_int], 'd2') + ' - ' + f_getDate(charts[1].columns[0][charts[1].columns[0].length-1], 'd2'); //set date interval in right corner
   if (charts[1].stacked) {
-    console.info('Chart# ',charts[0], ' stacked');
     if (charts[1].percentage) {
-      console.info('Chart# ',charts[0], ' percentage');
+      console.info('Chart# ',charts[0], 'stacked percentage',charts);
+    } else {
+      console.info('Chart# ',charts[0], ' stacked', charts);
     }
   } else if (charts[1].y_scaled) {
-      console.info('Chart# ',charts[0], ' y_scaled');
+      //scaling
+      let scaling_k = getMaxArr(charts[1].columns[1].slice(1)) / getMaxArr(charts[1].columns[2].slice(1));
+      let i = 2;
+      if (scaling_k < 1) {
+        scaling_k = 1 / scaling_k;
+        i = 1;
+      }
+      for (let j = 1; i < charts[1].columns[i].length; j++) charts[1].columns[i] *= scaling_k;
+      //end of scaling
+      console.info('Chart# ',charts[0], ' y_scaled',charts);
+  } else if ((charts[1].types.y0) == "bar") {
+      console.info('Chart# ',charts[0], ' bar',charts);
+
+  } else if ((charts[1].types.y0) == "line") {
+      console.info('Chart# ',charts[0], ' line',charts);
+      console.warn('getLine:',getLine(charts[1].columns,null));
   }
 }
 
