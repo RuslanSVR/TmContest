@@ -48,7 +48,15 @@ function onSuccess(charts) {
   let date_int = def_int;
   console.warn('Chart: ', charts);
   document.getElementById('chartBoard' + charts[0]).setAttribute('viewBox', '0 7 7 ' + charts[0]);
-  document.getElementById('date-interval-' + charts[0]).innerHTML = f_getDate(charts[1].columns[0][charts[1].columns[0].length-1-date_int], 'd2') + ' - ' + f_getDate(charts[1].columns[0][charts[1].columns[0].length-1], 'd2');
+  document.getElementById('date-interval-' + charts[0]).innerHTML = f_getDate(charts[1].columns[0][charts[1].columns[0].length-1-date_int], 'd2') + ' - ' + f_getDate(charts[1].columns[0][charts[1].columns[0].length-1], 'd2'); //set date interval in right corner
+  if (charts[1].stacked) {
+    console.info('Chart# ',charts[0], ' stacked');
+    if (charts[1].percentage) {
+      console.info('Chart# ',charts[0], ' percentage');
+    }
+  } else if (charts[1].y_scaled) {
+      console.info('Chart# ',charts[0], ' y_scaled');
+  }
 }
 
 
