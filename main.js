@@ -105,7 +105,7 @@ function drawStackedBar(chart, ch_num) {
     y = max_sum;
     for (let j = 1; j < chart.columns.length; j++) {
       y -= chart.columns[j][i];
-      html_str += "<rect x='" + x + "' y='" + y + "' width='1' height='" + (chart.columns[j][i]) + "' stroke-width='0' fill='" + chart.colors[chart.columns[j][0]] + "' vector-effect='non-scaling-stroke' /> ";
+      html_str += "<rect x='" + x + "' y='" + y + "' width='1' height='" + (chart.columns[j][i]) + "' stroke-width='1' stroke-opacity='1' stroke='" + chart.colors[chart.columns[j][0]] + "' fill='" + chart.colors[chart.columns[j][0]] + "' vector-effect='non-scaling-stroke' /> ";
     }
     x += 1;
   }
@@ -151,6 +151,7 @@ function onSuccess(charts) {
       console.info('Chart# ',charts[0], ' y_scaled',charts);
   } else if ((charts[1].types.y0) == "bar") {
       console.info('Chart# ',charts[0], ' bar',charts);
+      drawStackedBar(charts[1],charts[0]);
 
   } else if ((charts[1].types.y0) == "line") {
       console.info('Chart# ',charts[0], ' line',charts);
