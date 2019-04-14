@@ -1,4 +1,4 @@
-var uTime = 1528016400000;
+var uTime = 1554508800000;
     ch_max = 5;
     charts = [];
 function f_getDate(UNIX_timestamp, tView){ //tView[t - time, d1 - 1 Apr, d2 - 1 April 2019, day - Saturday]
@@ -42,15 +42,19 @@ function getChart(url, ch_num){
 }
 
 //test
+var def_int = 6; //default date diff
+//on onSuccess for each chart
 function onSuccess(charts) {
+  let date_int = def_int;
   console.warn('Chart: ', charts);
   document.getElementById('chartBoard' + charts[0]).setAttribute('viewBox', '0 7 7 ' + charts[0]);
+  document.getElementById('date-interval-' + charts[0]).innerHTML = f_getDate(charts[1].columns[0][charts[1].columns[0].length-1-date_int], 'd2') + ' - ' + f_getDate(charts[1].columns[0][charts[1].columns[0].length-1], 'd2');
 }
 
 
 let x1 = 0; let y1 = 0; //delete from here
 for (let i = 1; i <= 5 ; i++) {
-  document.write("<div class='chartsHeader'><div class='chartsName'><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div><div class='chart-interval'>Test</div></div>"); //create title element for each chart
+  document.write("<div class='chartsHeader'><div class='chartsName'><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div><div class='chart-interval'><font id=date-interval-" + i + ">Test</font></div></div>"); //create title element for each chart
   document.write("<div><svg x='0' y='0' width='400px' height=400px viewbox='0 0 0 0' preserveAspectRatio='none' class='chartBoards' id='chartBoard"+ i + "' xmlns=\"http://www.w3.org/2000/svg\" " + "" + ">"); //create chart board i
   document.write("</div></svg>");
 }
