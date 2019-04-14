@@ -93,7 +93,7 @@ function onSuccess(charts) {
       for (let j = 1; j < charts[1].columns[i].length; j++)
         charts[1].columns[i][j] = Math.round(charts[1].columns[i][j]*scaling_k);
       //end of scaling
-
+      drawLine(charts[1],charts[0]);
 
 
       console.info('Chart# ',charts[0], ' y_scaled',charts);
