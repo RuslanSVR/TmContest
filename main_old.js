@@ -165,3 +165,18 @@ getChart('input_s/1/overview.json').then(
     function(chart_obj) {console.log(chart_obj);},
     function(error){console.log(error);}
 );*/
+
+
+function getLine(chart, ch_num) { //returns polyline for line type chart --input: columns, scaled [true,false]
+  let line = [];
+  let maxY = 0;
+  for (var i = 1; i < chart.length; i++) {
+    maxY = getMaxArr(chart[i].slice(1));
+    line[i-1] = '';
+    for (var j = 1; j < chart[i].length; j++) {
+      line[i-1] += (j-1) + ',' + (maxY - chart[i][j]) + ' ';
+    }
+    document.getElementById('chartBoard' + ch_num).innerHTML = "<polyline points='20,20 40,50 60,40' stroke='red' stroke-width='3' fill='none' vector-effect='non-scaling-stroke' />";
+  }
+  return line;
+}

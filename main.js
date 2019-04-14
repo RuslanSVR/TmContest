@@ -51,18 +51,21 @@ function getMinArr(array){
 
   //let minX = getMinArr(arrX.slice(1));
 
-function getLine(chart) { //returns polyline for line type chart --input: columns, scaled [true,false]
-  let line = [];
+function drawLine(chart, ch_num) { //returns polyline for line type chart --input: columns, scaled [true,false]
+  let line = '';
   let maxY = 0;
-  for (var i = 1; i < chart.length; i++) {
-    maxY = getMaxArr(chart[i].slice(1));
-    line[i-1] = '';
-    for (var j = 1; j < chart[i].length; j++) {
-      line[i-1] += (j-1) + ',' + (maxY - chart[i][j]) + ' ';
+  for (var i = 1; i < chart.columns.length; i++) {
+    maxY = getMaxArr(chart.columns[i].slice(1));
+    line = '';
+    for (var j = 1; j < chart.columns[i].length; j++) {
+      line += (j-1) + ',' + (maxY - chart.columns[i][j]) + ' ';
     }
+    document.getElementById('chartBoard' + ch_num).innerHTML = "<polyline points='" + line + "' stroke='" + chart.colors[chart.columns[i][0]] + "' stroke-width='1' fill='none' vector-effect='non-scaling-stroke' />";
   }
   return line;
 }
+
+
 
 //on onSuccess for each chart
 function onSuccess(charts) {
@@ -88,7 +91,7 @@ function onSuccess(charts) {
         charts[1].columns[i][j] = Math.round(charts[1].columns[i][j]*scaling_k);
       //end of scaling
 
-      document.getElementById('chartBoard' + charts[0]).innerHTML = "<polyline points='20,20 40,50 60,40' stroke='red' stroke-width='3' fill='none' vector-effect='non-scaling-stroke' />";
+
 
       console.info('Chart# ',charts[0], ' y_scaled',charts);
   } else if ((charts[1].types.y0) == "bar") {
@@ -96,7 +99,7 @@ function onSuccess(charts) {
 
   } else if ((charts[1].types.y0) == "line") {
       console.info('Chart# ',charts[0], ' line',charts);
-      console.warn('getLine:',getLine(charts[1].columns,null));
+      drawLine(charts[1],charts[0]);
   }
 }
 
