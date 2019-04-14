@@ -31,9 +31,7 @@ function getChart(url, ch_num){
     chart.onreadystatechange = () => {
       if (chart.readyState == 4) {
           if(chart.status == 200) {
-            try{
-                resolve([ch_num, JSON.parse(chart.responseText)])
-            }
+            try{resolve([ch_num, JSON.parse(chart.responseText)])}
             catch(err){reject(err);}
           }
           else reject(chart.status);
@@ -46,7 +44,6 @@ function getChart(url, ch_num){
 //test
 function onSuccess(my_obj) {
   console.warn('Chart: ', my_obj);
-
 }
 
 var charts = [];
