@@ -2,6 +2,21 @@ var uTime = 1554508800000;
     ch_max = 5;
     charts = [];
 var def_int = 6; //default date diff
+var wSize = {};
+    wSize.W = document.body.clientWidth;
+    wSize.H = window.innerHeight;
+var portraitOrientation;
+var chartBoardHeight;
+
+//detects screen orientation
+if (wSize.W < wSize.H) {
+  portraitOrientation = true;
+  chartBoardHeight = Math.round(wSize.W / 1.2);
+}else {
+  portraitOrientation = false;
+  chartBoardHeight = Math.round(wSize.H / 1.2);
+}
+
 function f_getDate(UNIX_timestamp, tView){ //tView[t - time, d1 - 1 Apr, d2 - 1 April 2019, day - Saturday]
   var uStamp = new Date(UNIX_timestamp);
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -110,7 +125,7 @@ function onSuccess(charts) {
 let x1 = 0; let y1 = 0; //delete from here
 for (let i = 1; i <= 5 ; i++) {
   document.write("<div class='chartsHeader'><div class='chartsName'><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div><div class='chart-interval'><font class=date-interval id=date-interval-" + i + ">Test</font></div></div>"); //create title element for each chart
-  document.write("<div><svg x='0' y='0' width='400px' height=400px viewbox='0 0 0 0' preserveAspectRatio='none' class='chartBoards' id='chartBoard"+ i + "' xmlns=\"http://www.w3.org/2000/svg\" " + "" + ">"); //create chart board i
+  document.write("<div><svg x='0' y='0' width='400px' height=" +chartBoardHeight+ "px viewbox='0 0 0 0' preserveAspectRatio='none' class='chartBoards' id='chartBoard"+ i + "' xmlns=\"http://www.w3.org/2000/svg\" " + "" + ">"); //create chart board i
   document.write("</div></svg>");
 }
 
