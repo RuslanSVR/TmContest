@@ -93,11 +93,11 @@ function onSuccess(charts) {
       document.write(" />");
       */
 
-      var points_el = document.createElement('polyline');
-      points_el.setAttribute('points', '10,20 100,300');
+      var points_el = document.createElement("polyline");
+      points_el.setAttribute('points', '20,20 40,25 60,40 80,120 120,140 200,180');
       points_el.setAttribute('stroke', "red");
       points_el.setAttribute('stroke-width', '3');
-      points_el.setAttribute('fill', 'none');
+      points_el.setAttribute('fill', 'black');
       document.getElementById('chartBoard' + charts[0]).appendChild(points_el);
 
       console.info('Chart# ',charts[0], ' y_scaled',charts);
