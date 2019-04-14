@@ -67,7 +67,7 @@ function getLine(chart) { //returns polyline for line type chart --input: column
 //on onSuccess for each chart
 function onSuccess(charts) {
   let date_int = def_int;
-  document.getElementById('chartBoard' + charts[0]).setAttribute('viewBox', '0 7 7 ' + charts[0]);
+  //document.getElementById('chartBoard' + charts[0]).setAttribute('viewBox', '0 7 7 ' + charts[0]);
   document.getElementById('date-interval-' + charts[0]).innerHTML = f_getDate(charts[1].columns[0][charts[1].columns[0].length-1-date_int], 'd2') + ' - ' + f_getDate(charts[1].columns[0][charts[1].columns[0].length-1], 'd2'); //set date interval in right corner
   if (charts[1].stacked) {
     if (charts[1].percentage) {
@@ -87,6 +87,20 @@ function onSuccess(charts) {
       for (let j = 1; j < charts[1].columns[i].length; j++)
         charts[1].columns[i][j] = Math.round(charts[1].columns[i][j]*scaling_k);
       //end of scaling
+      /*
+      document.write("<polyline points=\"" + '10,20 100,300' + "\" stroke=" + "red");
+      document.write(" stroke-width=\"1\" fill=\"transparent\" vector-effect=\"non-scaling-stroke\"  ");
+      document.write(" />");
+      */
+
+      var points_el = document.createElement('polyline');
+      points_el.setAttribute('stroke', "red");
+      points_el.setAttribute('points', '10,20 100,300');
+      points_el.setAttribute('stroke-width', '1');
+      points_el.setAttribute('fill', 'transparent');
+      points_el.setAttribute('fill', 'transparent');
+      document.getElementById('chartBoard' + charts[0]).appendChild(points_el);
+
       console.info('Chart# ',charts[0], ' y_scaled',charts);
   } else if ((charts[1].types.y0) == "bar") {
       console.info('Chart# ',charts[0], ' bar',charts);
@@ -101,7 +115,7 @@ function onSuccess(charts) {
 let x1 = 0; let y1 = 0; //delete from here
 for (let i = 1; i <= 5 ; i++) {
   document.write("<div class='chartsHeader'><div class='chartsName'><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div><div class='chart-interval'><font class=date-interval id=date-interval-" + i + ">Test</font></div></div>"); //create title element for each chart
-  document.write("<div><svg x='0' y='0' width='400px' height=400px viewbox='0 0 0 0' preserveAspectRatio='none' class='chartBoards' id='chartBoard"+ i + "' xmlns=\"http://www.w3.org/2000/svg\" " + "" + ">"); //create chart board i
+  document.write("<div><svg x='0' y='0' width='400px' height=400px viewbox='0 0 400 400' preserveAspectRatio='none' class='chartBoards' id='chartBoard"+ i + "' xmlns=\"http://www.w3.org/2000/svg\" " + "" + ">"); //create chart board i
   document.write("</div></svg>");
 }
 
