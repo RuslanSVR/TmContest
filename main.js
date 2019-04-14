@@ -53,6 +53,7 @@ function getMinArr(array){
 
 function drawLine(chart, ch_num) { //returns polyline for line type chart --input: columns, scaled [true,false]
   let line = '';
+  let html_str = '';
   let maxY = 0;
   for (var i = 1; i < chart.columns.length; i++) {
     maxY = getMaxArr(chart.columns[i].slice(1));
@@ -60,9 +61,11 @@ function drawLine(chart, ch_num) { //returns polyline for line type chart --inpu
     for (var j = 1; j < chart.columns[i].length; j++) {
       line += (j-1) + ',' + (maxY - chart.columns[i][j]) + ' ';
     }
-    document.getElementById('chartBoard' + ch_num).innerHTML = "<polyline points='" + line + "' stroke='" + chart.colors[chart.columns[i][0]] + "' stroke-width='1' fill='none' vector-effect='non-scaling-stroke' />";
+    html_str += "<polyline points='" + line + "' stroke='" + chart.colors[chart.columns[i][0]] + "' stroke-width='1' fill='none' vector-effect='non-scaling-stroke' /> ";
+
   }
-  return line;
+  document.getElementById('chartBoard' + ch_num).setAttribute('viewBox', '0 0 ' + chart.columns[0].length +' '+ maxY);
+  document.getElementById('chartBoard' + ch_num).innerHTML = html_str;
 }
 
 
@@ -107,7 +110,7 @@ function onSuccess(charts) {
 let x1 = 0; let y1 = 0; //delete from here
 for (let i = 1; i <= 5 ; i++) {
   document.write("<div class='chartsHeader'><div class='chartsName'><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div><div class='chart-interval'><font class=date-interval id=date-interval-" + i + ">Test</font></div></div>"); //create title element for each chart
-  document.write("<div><svg x='0' y='0' width='400px' height=400px  preserveAspectRatio='none' class='chartBoards' id='chartBoard"+ i + "' xmlns=\"http://www.w3.org/2000/svg\" " + "" + ">"); //create chart board i
+  document.write("<div><svg x='0' y='0' width='400px' height=400px viewbox='0 0 0 0' preserveAspectRatio='none' class='chartBoards' id='chartBoard"+ i + "' xmlns=\"http://www.w3.org/2000/svg\" " + "" + ">"); //create chart board i
   document.write("</div></svg>");
 }
 
