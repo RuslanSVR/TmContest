@@ -64,8 +64,6 @@ function getLine(chart) { //returns polyline for line type chart --input: column
   return line;
 }
 
-
-
 //on onSuccess for each chart
 function onSuccess(charts) {
   let date_int = def_int;
@@ -80,12 +78,14 @@ function onSuccess(charts) {
   } else if (charts[1].y_scaled) {
       //scaling
       let scaling_k = getMaxArr(charts[1].columns[1].slice(1)) / getMaxArr(charts[1].columns[2].slice(1));
+      console.warn('scaling_k: ',scaling_k);
       let i = 2;
       if (scaling_k < 1) {
         scaling_k = 1 / scaling_k;
         i = 1;
       }
-      for (let j = 1; i < charts[1].columns[i].length; j++) charts[1].columns[i] *= scaling_k;
+      for (let j = 1; j < charts[1].columns[i].length; j++)
+        charts[1].columns[i][j] = Math.round(charts[1].columns[i][j]*scaling_k);
       //end of scaling
       console.info('Chart# ',charts[0], ' y_scaled',charts);
   } else if ((charts[1].types.y0) == "bar") {
