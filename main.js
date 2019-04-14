@@ -54,7 +54,7 @@ function onSuccess(charts) {
 
 let x1 = 0; let y1 = 0; //delete from here
 for (let i = 1; i <= 5 ; i++) {
-  document.write("<div class='chartsHeader'><div class='chartsName'><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div><div class='chart-interval'><font id=date-interval-" + i + ">Test</font></div></div>"); //create title element for each chart
+  document.write("<div class='chartsHeader'><div class='chartsName'><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div><div class='chart-interval'><font class=date-interval id=date-interval-" + i + ">Test</font></div></div>"); //create title element for each chart
   document.write("<div><svg x='0' y='0' width='400px' height=400px viewbox='0 0 0 0' preserveAspectRatio='none' class='chartBoards' id='chartBoard"+ i + "' xmlns=\"http://www.w3.org/2000/svg\" " + "" + ">"); //create chart board i
   document.write("</div></svg>");
 }

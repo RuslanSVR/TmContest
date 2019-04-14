@@ -24,9 +24,16 @@
   font-weight: bold;
   font-size: 15px;
   color: #696969;
+  text-align: left;
+}
+.date-interval {
+  font-family: arial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  color: #696969;
   text-align: right;
 }
-
 
 .chartsHeader {
   position: relative;
