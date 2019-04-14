@@ -47,14 +47,16 @@ function onSuccess(my_obj) {
 }
 
 var charts = [];
-for (var i = 1; i <= ch_max; i++) {
+for (let i = 1; i <= ch_max; i++) {
     getChart('input_s/' + i + '/overview.json', i)
       .then(resolve => {
         onSuccess(resolve);
         charts[resolve[0]] = resolve[1];
       })
-      .catch(error => console.log(error))
-  ;
+      .catch(error => console.log(error));
+}
+
+for (let i = 1; i <= 5 ; i++) {
   document.write("<div class='chartsHeader'><div class='chartsName'><font class='chartTitles' id='chartTitle"+ i + "'>" + "Chart: #" + i + "</font></div><div class='chart-interval'>Test</div></div>"); //create title element for each chart
 }
 console.info(charts);
