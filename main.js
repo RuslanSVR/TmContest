@@ -79,26 +79,46 @@ function drawLine(chart, ch_num) { //returns polyline for line type chart --inpu
     html_str += "<polyline points='" + line + "' stroke='" + chart.colors[chart.columns[i][0]] + "' stroke-width='1' fill='none' vector-effect='non-scaling-stroke' /> ";
 
   }
-  document.getElementById('chartBoard' + ch_num).setAttribute('viewBox', '334 0 ' + (chart.columns[0].length-1-335) +' '+ maxY);
+  //document.getElementById('chartBoard' + ch_num).setAttribute('viewBox', '334 0 ' + (chart.columns[0].length-1-335) +' '+ maxY); //change viewbox example for month
+  document.getElementById('chartBoard' + ch_num).setAttribute('viewBox', '0 0 ' + (chart.columns[0].length-1) +' '+ maxY);
   document.getElementById('chartBoard' + ch_num).innerHTML = html_str;
 }
 
-function drawBar(chart, ch_num) {
-  let bar_sum = 0;
+function drawStackedBar(chart, ch_num) {
+  let bar_sum = [];
   let html_str = '';
-  rect_str = '';
-  for (var i = 1; i < chart.columns[i].length; i++) {
-    for (var j = 1; j < chart.columns.length; j++) {
-      bar_sum += chart.columns[j][i];
+  let rect_str = '';
+  //calculate value of stacked bar sum
+  for (let i = 1; i < chart.columns[1].length; i++) {
+    bar_sum[i-1] = 0;
+    for (let j = 1; j < chart.columns.length; j++) {
+      bar_sum[i-1] += chart.columns[j][i];
     }
-    console.info('bar_sum: ',bar_sum);
   }
+  let max_sum = getMaxArr(bar_sum); //max value of stacked bars
+  console.warn('max_sum: ',max_sum);
+
+  let y = 0;
+  let x = 0;
+  let bar_w = 1;
+  for (let i = 1; i < chart.columns[1].length; i++) {
+    y = max_sum;
+    for (let j = 1; j < chart.columns.length; j++) {
+      y -= chart.columns[j][i];
+      html_str += "<rect x='" + x + "' y='" + y + "' width='1' height='" + (chart.columns[j][i]) + "' stroke-width='0' fill='" + chart.colors[chart.columns[j][0]] + "' vector-effect='non-scaling-stroke' /> ";
+    }
+    x += 1;
+  }
+  console.warn('html_str: ',html_str);
+  document.getElementById('chartBoard' + ch_num).setAttribute('viewBox', '334 0 ' + (chart.columns[0].length-1-335) +' '+ max_sum); //change viewbox example for month
+  //document.getElementById('chartBoard' + ch_num).setAttribute('viewBox', '0 0 ' + (chart.columns[0].length-1) +' '+ max_sum);
+  document.getElementById('chartBoard' + ch_num).innerHTML = html_str;
   /*
-  for (var i = 1; i < chart.columns.length; i++) {
+  for (let i = 1; i < chart.columns.length; i++) {
     for (var j = 1; j < chart.columns[i].length; j++) {
+
     }
-  }
-*/
+  }*/
 }
 
 //on onSuccess for each chart
@@ -111,6 +131,7 @@ function onSuccess(charts) {
       console.info('Chart# ',charts[0], 'stacked percentage',charts);
     } else {
       console.info('Chart# ',charts[0], ' stacked', charts);
+      drawStackedBar(charts[1],charts[0]);
     }
   } else if (charts[1].y_scaled) {
       //scaling
@@ -129,7 +150,6 @@ function onSuccess(charts) {
 
       console.info('Chart# ',charts[0], ' y_scaled',charts);
   } else if ((charts[1].types.y0) == "bar") {
-      drawBar(charts[1],charts[0]);
       console.info('Chart# ',charts[0], ' bar',charts);
 
   } else if ((charts[1].types.y0) == "line") {
