@@ -79,11 +79,27 @@ function drawLine(chart, ch_num) { //returns polyline for line type chart --inpu
     html_str += "<polyline points='" + line + "' stroke='" + chart.colors[chart.columns[i][0]] + "' stroke-width='1' fill='none' vector-effect='non-scaling-stroke' /> ";
 
   }
-  document.getElementById('chartBoard' + ch_num).setAttribute('viewBox', '0 0 ' + chart.columns[0].length +' '+ maxY);
+  document.getElementById('chartBoard' + ch_num).setAttribute('viewBox', '334 0 ' + (chart.columns[0].length-1-335) +' '+ maxY);
   document.getElementById('chartBoard' + ch_num).innerHTML = html_str;
 }
 
-
+function drawBar(chart, ch_num) {
+  let bar_sum = 0;
+  let html_str = '';
+  rect_str = '';
+  for (var i = 1; i < chart.columns[i].length; i++) {
+    for (var j = 1; j < chart.columns.length; j++) {
+      bar_sum += chart.columns[j][i];
+    }
+    console.info('bar_sum: ',bar_sum);
+  }
+  /*
+  for (var i = 1; i < chart.columns.length; i++) {
+    for (var j = 1; j < chart.columns[i].length; j++) {
+    }
+  }
+*/
+}
 
 //on onSuccess for each chart
 function onSuccess(charts) {
@@ -113,6 +129,7 @@ function onSuccess(charts) {
 
       console.info('Chart# ',charts[0], ' y_scaled',charts);
   } else if ((charts[1].types.y0) == "bar") {
+      drawBar(charts[1],charts[0]);
       console.info('Chart# ',charts[0], ' bar',charts);
 
   } else if ((charts[1].types.y0) == "line") {
